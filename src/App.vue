@@ -1,12 +1,20 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <router-view />
 </template>
+
+<script setup>
+import { nextTick, watch } from "vue";
+import { useRouter } from "vue-router";
+import config from "./config";
+import { firebaseState } from "./utils/useFirebase";
+
+const { push } = useRouter();
+watch(() => firebaseState.user, (user) => {
+  nextTick(() => {
+    push({ name: user ? config.home : 'landing' });
+  })
+}, { deep: true });
+</script>
 
 <style>
 #app {

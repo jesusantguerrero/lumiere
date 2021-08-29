@@ -1,6 +1,6 @@
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
 
 import CONFIG from "../../config";
 
@@ -33,13 +33,14 @@ const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 
 export const register = async (email, password) => {
-    return firebase.auth().createUserWithEmailAndPassword(email, password).catch(reason => {
+    return createUserWithEmailAndPassword(auth, email, password).catch(reason => {
         throw new Error(reason.message);
     })
 }
 
 export const login = async (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password).catch((reason) => {
+    return signInWithEmailAndPassword(auth, email, password)
+    .catch((reason) => {
         throw new Error(reason.message);
     })
 }
@@ -76,15 +77,15 @@ export const logout = () => {
 // listen to auth state changes
 const initFirebase = new Promise(resolve => {
     onAuthStateChanged(auth, async (user) => {
-        if (user) {
-            firebaseState.settings = {};
-            firebaseState.user = user;
-            firebaseState.onLoaded()
-        }
-        resolve(user);
-    })
+        firebaseState.settings = {};
+        firebaseState.user = user;
+        firebaseState.onLoaded()
+        resolve(user || firebaseState.user);
+    });
+    resolve(firebaseState.user);
 })
 
-export const isAuthenticated = () => {
-    return initFirebase;
+export const isAuthenticated = async () => {
+    await initFirebase;
+    return firebaseState.user;
 }
