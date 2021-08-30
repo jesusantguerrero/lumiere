@@ -1,4 +1,5 @@
 export default {
+    appName: 'Lumiere',
     home: 'dashboard',
     loginRoutes: ['login', 'register'],
     FIREBASE_API_KEY: import.meta.env.VITE_FIREBASE_APP_KEY,

@@ -1,6 +1,6 @@
 <template>
   <main class="w-full">
-    <div class="w-full bg-gray-800">
+    <div class="w-full bg-warm-gray-800">
       <AtSiteHeader
         title="Lumiere"
         :links="state.links"
@@ -11,7 +11,7 @@
         <h1 class="text-4xl font-brand"> Lumiere </h1>
         <div>
             <p class="pt-5 text-xl">
-                A simple, fast and powerful Vue.js/Firebase boiler plate based <span class="font-bold">Atmosphere UI</span>.
+                A simple and powerful Vue 3 / Firebase 9 boiler plate based <span class="font-bold">Atmosphere UI</span>.
             </p>
 
             <div class="mt-5 space-x-3">
@@ -28,8 +28,8 @@
             </div>
         </div>
     </div>
-    <div class="relative bg-gray-800">
-        <AtPreFooter :sections="state.sections" class="bg-gray-800" />
+    <div class="relative text-gray-100 bg-warm-gray-800">
+        <AtPreFooter :sections="state.sections" class="bg-warm-gray-800" />
         <AtSiteFooter
             title="Lumiere"
             year="2021"
@@ -131,7 +131,7 @@ const state = {
           },
           {
               emoji: "📦",
-              name: "Tailwindcss",
+              name: "TailwindCSS",
           },
           {
               emoji: "📦",
@@ -141,15 +141,30 @@ const state = {
         row2: [
               {
                   emoji: "📦",
-                  name: "Firebase",
+                  name: "Atmosphere UI",
               },
               {
                   emoji: "📦",
-                  name: "Tailwindcss",
+                  name: "Vue 3",
               },
               {
                 emoji: "📦",
-                name: "Storybook",
+                name: "Vue Testing Library",
+                 
+      }],
+        row3: [
+              {
+                  emoji: "📦",
+                  name: "Full auth flow",
+                  description: "Authentication, registration, password update, password confirmation, Social logins"
+              },
+              {
+                  emoji: "📦",
+                  name: "API, Teams, Payment",
+              },
+              {
+                emoji: "📦",
+                name: "Settings",
                  
       }],
   }
