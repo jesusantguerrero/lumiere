@@ -50,7 +50,6 @@ const myRouter = createRouter({
 
 myRouter.beforeEach(async (to, _from, next) => {
   const user = await isAuthenticated();
-  debugger;
   if (to.meta.requiresAuth !== false && !user) {
     next({ name: "login" });
   } else if (to.meta.requiresAuth == false && user && config.loginRoutes.includes(to.name)) {
