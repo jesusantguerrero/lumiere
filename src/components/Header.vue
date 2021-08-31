@@ -22,7 +22,7 @@
       </div>
       <div>
         <AtButton type="primary" @click="$emit('logout')" v-if="user">
-          Log out
+          Logout
         </AtButton>
       </div>
     </div>

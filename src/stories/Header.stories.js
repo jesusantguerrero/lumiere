@@ -1,7 +1,7 @@
 import MyHeader from '../components/Header.vue';
 
 export default {
-  title: 'Example/Header',
+  title: 'Components/Header',
   component: MyHeader,
 };
 
@@ -19,10 +19,12 @@ const Template = (args) => ({
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
+  title: "Lumiere",
   user: {},
 };
 
 export const LoggedOut = Template.bind({});
 LoggedOut.args = {
+  title: "Lumiere",
   user: null,
 };
