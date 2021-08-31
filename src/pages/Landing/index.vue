@@ -3,7 +3,9 @@
     <div class="w-full bg-warm-gray-800">
       <AtSiteHeader
         title="Lumiere"
+        brand-class="font-brand"
         :links="state.links"
+        link-class="text-white hover:text-amber-500"
         :actions="state.actions"
       />
     </div>
@@ -11,7 +13,7 @@
         <h1 class="text-4xl font-brand"> Lumiere </h1>
         <div>
             <p class="pt-5 text-xl">
-                A simple and powerful Vue 3 / Firebase 9 boiler plate based <span class="font-bold">Atmosphere UI</span>.
+                A simple and powerful Vue 3 / Firebase 9 boilerplate based <span class="font-bold">Atmosphere UI</span>.
             </p>
 
             <div class="mt-5 space-x-3">
@@ -55,12 +57,12 @@ const state = {
       url: "#about",
     },
     {
-      name: "Contact",
-      url: "#contact",
+        name: "Features",
+        url: "#features",
     },
     {
-      name: "Features",
-      url: "#features",
+      name: "Contact",
+      url: "#contact",
     },
   ],
   sections: {
