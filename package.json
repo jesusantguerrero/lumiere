@@ -4,20 +4,29 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "firebase": "^9.0.0",
     "vue": "^3.2.6"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@storybook/addon-actions": "^6.3.7",
+    "@storybook/addon-essentials": "^6.3.7",
+    "@storybook/addon-links": "^6.3.7",
+    "@storybook/vue3": "^6.3.7",
     "@vitejs/plugin-vue": "^1.6.0",
     "@vue/compiler-sfc": "^3.0.5",
     "atmosphere-ui": "^0.2.6",
     "autoprefixer": "^10.3.3",
+    "babel-loader": "^8.2.2",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.8",
     "vite": "^2.5.1",
+    "vue-loader": "^16.5.0",
     "vue-router": "^4.0.11"
   }
 }
