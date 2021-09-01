@@ -19,19 +19,23 @@ export const useAuth = (provider) => {
         AuthState.onLoaded = loadedCallback   
     }
 
-    const initAuth = new Promise(resolve => {
-        AuthState.provider?.onAuthStateChanged(async (user) => {
+    const initAuth = (authenticatedCallback) => {
+        if (AuthState.provider?.getUser) {
+            AuthState.user = AuthState.provider.getUser();
+        }
+        AuthState.provider?.onAuthStateChanged((user, session) => {
+            const authenticatedUser = session?.user || user;
             AuthState.settings = {};
-            AuthState.user = user;
+            AuthState.user = typeof authenticatedUser !== 'string' ? authenticatedUser : {};
             AuthState.onLoaded()
-            resolve(user || AuthState.user);
+            authenticatedCallback && authenticatedCallback(authenticatedUser || AuthState.user);
         });
-        resolve(AuthState.user);
-    })
+        authenticatedCallback && authenticatedCallback(AuthState.user);
+    };
     
     const isAuthenticated = async () => {
-        await initAuth;
-        return AuthState.user;
+        // await new Promise(resolve => initAuth(resolve));
+        return AuthState.user?.email;
     }
     
     return {

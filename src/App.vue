@@ -4,19 +4,14 @@
 
 <script setup>
 import { nextTick, watch } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import config from "./config";
-import { useFirebase } from "./utils/useFirebase";
+import { avoidLoginRoutes } from  './router';
+import { useSupabase } from "./utils/useSupabase";
 import { AuthState, useAuth } from "./utils/useAuth";
 
-useAuth(useFirebase());
-
-const { push } = useRouter();
-watch(() => AuthState.user, (user) => {
-  nextTick(() => {
-    push({ name: user ? config.home : 'landing' });
-  })
-}, { deep: true });
+const { initAuth } = useAuth(useSupabase(AuthState));
+initAuth(avoidLoginRoutes.bind(null, useRoute()));
 </script>
 
 <style>

@@ -7,5 +7,7 @@ export default {
     FIREBASE_APP_ID: import.meta.env.VITE_FIREBASE_APP_ID,
     FIREBASE_SENDER_ID: import.meta.env.VITE_FIREBASE_SENDER_ID,
     PUSH_PK: import.meta.env.VITE_PUSH_PK,
-    MEASUREMENT_ID: import.meta.env.VITE_MEASUREMENT_ID
+    MEASUREMENT_ID: import.meta.env.VITE_MEASUREMENT_ID,
+    supabaseURL: import.meta.env.VITE_SUPABASE_URL,
+    supabaseAnonKey: import.meta.env.VITE_SUPABASE_ANON_KEY,
 }

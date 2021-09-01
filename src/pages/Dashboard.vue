@@ -1,5 +1,5 @@
 <template>
-    <Header title="Lumiere"  :user="AuthState.user" @logout="logout" />
+    <Header title="Lumiere"  :user="AuthState.user" @logout="signOut" />
     <main class="px-10 mt-10">
         The dashboard
     </main>
@@ -8,5 +8,15 @@
 <script setup>
     import { AuthState, useAuth } from '../utils/useAuth';
     import Header from '../components/Header.vue';
+    import { useRouter } from 'vue-router';
+
+    const { push } = useRouter();
     const { logout } = useAuth();
+    const goToHome = () => {
+        push({ name: 'landing' })
+    };
+    
+    const signOut = () => {
+        logout(goToHome);
+    }
 </script>

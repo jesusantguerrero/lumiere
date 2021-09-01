@@ -59,4 +59,13 @@ myRouter.beforeEach(async (to, _from, next) => {
   }
 });
 
+export const avoidLoginRoutes = (route, isAuthenticated) => {
+  if (isAuthenticated && route.matched.some(record => config.loginRoutes.includes(record.path))) {
+    myRouter.push({ name: "dashboard" });
+  } else if (!isAuthenticated) {
+    myRouter.push({ name: "login" });
+  }
+  return
+}
+
 export default myRouter;

@@ -18,7 +18,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 // setup firebase auth
 const auth = getAuth(firebaseApp);
 
-export const useFirebase = () => {
+export const useFirebase = (AuthState) => {
     const register = async (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password).catch(reason => {
             throw new Error(reason.message);
@@ -60,11 +60,28 @@ export const useFirebase = () => {
         return signOut(auth)
     }
 
+    const initAuth = async(authenticatedCallback) => {
+        AuthState.provider?.onAuthStateChanged(async (user) => {
+            AuthState.settings = {};
+            AuthState.user = user;
+            AuthState.onLoaded()
+            authenticatedCallback && authenticatedCallback(user || AuthState.user);
+        });
+    };
+    
+    const isAuthenticated = async () => {
+        await initAuth();
+        return AuthState.user;
+    }
+
     return {
+        initAuth,
+        isAuthenticated,
         register,
         login,
         loginWithProvider,
         logout,
-        onAuthStateChanged: onAuthStateChanged.bind(null, auth)
+        onAuthStateChanged: onAuthStateChanged.bind(null, auth),
+        isAuthenticated,
     }
 }
