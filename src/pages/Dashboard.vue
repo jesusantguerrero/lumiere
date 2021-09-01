@@ -1,12 +1,22 @@
 <template>
-    <Header title="Lumiere"  user="firebaseState.user" @logout="logout" />
+    <Header title="Lumiere"  :user="AuthState.user" @logout="signOut" />
     <main class="px-10 mt-10">
         The dashboard
     </main>
 </template>
 
 <script setup>
-    import { logout, firebaseState } from '../utils/useFirebase';
-    import { AtButton } from 'atmosphere-ui';
+    import { AuthState, useAuth } from '../utils/lumiere-utils';
     import Header from '../components/Header.vue';
+    import { useRouter } from 'vue-router';
+
+    const { push } = useRouter();
+    const { logout } = useAuth();
+    const goToHome = () => {
+        push({ name: 'landing' })
+    };
+    
+    const signOut = () => {
+        logout(goToHome);
+    }
 </script>

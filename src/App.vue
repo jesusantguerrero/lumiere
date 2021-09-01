@@ -3,13 +3,17 @@
 </template>
 
 <script setup>
-import { nextTick, watch } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { avoidLoginRoutes } from  './router';
+import { useFirebase, AuthState, useAuth } from "./utils/lumiere-utils";
 import config from "./config";
-import { firebaseState } from "./utils/useFirebase";
+import { nextTick, watch } from "@vue/runtime-core";
+
+const { initAuth } = useAuth(useFirebase(AuthState, config));
+initAuth(avoidLoginRoutes.bind(null, useRoute()));
 
 const { push } = useRouter();
-watch(() => firebaseState.user, (user) => {
+watch(() => AuthState.user, (user) => {
   nextTick(() => {
     push({ name: user ? config.home : 'landing' });
   })
