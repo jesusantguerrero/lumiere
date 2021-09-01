@@ -19,7 +19,7 @@ export const useAuth = (provider) => {
         AuthState.onLoaded = loadedCallback   
     }
 
-    const initAuth = (callback) new Promise(resolve => {
+    const initAuth = new Promise(resolve => {
         AuthState.provider?.onAuthStateChanged(async (user) => {
             AuthState.settings = {};
             AuthState.user = user;
