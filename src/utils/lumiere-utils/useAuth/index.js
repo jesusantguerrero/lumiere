@@ -20,9 +20,7 @@ export const useAuth = (provider) => {
     }
 
     const initAuth = (authenticatedCallback) => {
-        if (AuthState.provider?.getUser) {
-            AuthState.user = AuthState.provider.getUser();
-        }
+      
         AuthState.provider?.onAuthStateChanged((user, session) => {
             const authenticatedUser = session?.user || user;
             AuthState.settings = {};
@@ -30,11 +28,15 @@ export const useAuth = (provider) => {
             AuthState.onLoaded()
             authenticatedCallback && authenticatedCallback(authenticatedUser || AuthState.user);
         });
-        authenticatedCallback && authenticatedCallback(AuthState.user);
+        
+        if (AuthState.provider?.getUser) {
+            AuthState.user = AuthState.provider.getUser();
+            authenticatedCallback && authenticatedCallback(AuthState.user);
+        }
     };
     
     const isAuthenticated = async () => {
-        // await new Promise(resolve => initAuth(resolve));
+        await new Promise(resolve => initAuth(resolve));
         return AuthState.user?.email;
     }
     

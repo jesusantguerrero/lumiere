@@ -19,7 +19,7 @@
 <script setup>
     import { nextTick, ref } from 'vue';
     import { AtAuthBox, AtAuthForm } from 'atmosphere-ui';
-    import { useAuth } from '../../utils/useAuth';
+    import { useAuth } from '../../utils/lumiere-utils';
     import { useRouter } from 'vue-router';
     import config from '../../config';
 

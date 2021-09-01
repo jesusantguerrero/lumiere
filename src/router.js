@@ -3,7 +3,7 @@ import Login from "./pages/Auth/Login.vue";
 import Dashboard from "./pages/Dashboard.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import config from "./config";
-import { useAuth } from "./utils/useAuth";
+import { useAuth } from "./utils/lumiere-utils";
 
 export const routes = [
   {
