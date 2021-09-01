@@ -1,8 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import { nextTick } from "vue";
-import config from "../../../config";
 
-export function useSupabase(AuthState) {
+export function useSupabase(AuthState, config) {
   const supabase = createClient(config.supabaseURL, config.supabaseAnonKey);
 
   const logout = async (callback) => {

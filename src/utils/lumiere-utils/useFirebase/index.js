@@ -1,24 +1,24 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
-import CONFIG from "../../../config";
 
-// setup firebase
-const firebaseConfig = {
-    apiKey: CONFIG.FIREBASE_API_KEY,
-    authDomain: `${CONFIG.FIREBASE_PROJECT_ID}.firebaseapp.com`,
-    databaseURL: `https://${CONFIG.FIREBASE_PROJECT_ID}.firebaseio.com`,
-    projectId: CONFIG.FIREBASE_PROJECT_ID,
-    storageBucket: `${CONFIG.FIREBASE_PROJECT_ID}.appspot.com`,
-    messagingSenderId: CONFIG.FIREBASE_SENDER_ID,
-    measurementId: CONFIG.MEASUREMENT_ID,
-    appId: CONFIG.FIREBASE_APP_ID,
-}
-const firebaseApp = initializeApp(firebaseConfig);
 
-// setup firebase auth
-const auth = getAuth(firebaseApp);
+export const useFirebase = (AuthState, config) => {
+    // setup firebase
+    const firebaseConfig = {
+        apiKey: config.FIREBASE_API_KEY,
+        authDomain: `${config.FIREBASE_PROJECT_ID}.firebaseapp.com`,
+        databaseURL: `https://${config.FIREBASE_PROJECT_ID}.firebaseio.com`,
+        projectId: config.FIREBASE_PROJECT_ID,
+        storageBucket: `${config.FIREBASE_PROJECT_ID}.appspot.com`,
+        messagingSenderId: config.FIREBASE_SENDER_ID,
+        measurementId: config.MEASUREMENT_ID,
+        appId: config.FIREBASE_APP_ID,
+    }
+    const firebaseApp = initializeApp(firebaseConfig);
+    
+    // setup firebase auth
+    const auth = getAuth(firebaseApp);
 
-export const useFirebase = (AuthState) => {
     const register = async (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password).catch(reason => {
             throw new Error(reason.message);

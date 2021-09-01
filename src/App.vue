@@ -9,7 +9,7 @@ import { useFirebase, AuthState, useAuth } from "./utils/lumiere-utils";
 import config from "./config";
 import { nextTick, watch } from "@vue/runtime-core";
 
-const { initAuth } = useAuth(useFirebase(AuthState));
+const { initAuth } = useAuth(useFirebase(AuthState, config));
 initAuth(avoidLoginRoutes.bind(null, useRoute()));
 
 const { push } = useRouter();
