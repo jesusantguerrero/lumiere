@@ -1,30 +1,30 @@
 <template>
     <AtAuthBox>
         <AtAuthForm
-            :form-data="formData"
-            app-name="Supa Up"
-            :is-loading="formData.isLoading"
+            :is-loading="isLoading"
             :mode="mode"
             @submit="onSubmit"
             @link-pressed="onLinkPressed"
             btn-class="mb-2 font-bold border-2 border-orange-400 rounded-md bg-gradient-to-br from-red-400 to-orange-500"
         >
           <template #brand>
-            <div class="w-full transform">
+            <router-link :to="{name: 'landing'}" class="w-full font-light font-brand">
                 Lumiere UI
-            </div>
+            </router-link>
           </template>
         </AtAuthForm>
       </AtAuthBox>
 </template>
 
 <script setup>
-    import { nextTick, reactive } from 'vue';
+    import { nextTick, ref } from 'vue';
     import { AtAuthBox, AtAuthForm } from 'atmosphere-ui';
-    import { login, register } from '../../utils/useFirebase';
+    import { useAuth } from '../../utils/useAuth';
     import { useRouter } from 'vue-router';
     import config from '../../config';
 
+    const { login, register } = useAuth();
+    
     const props = defineProps({
         mode: {
             type: String,
@@ -32,11 +32,7 @@
         }
     })
 
-    const formData = reactive({
-        email: '',
-        password: '',
-        isLoading: false
-    });
+    const isLoading = ref(false);
 
     const authMethods = {
         login,
@@ -53,7 +49,7 @@
         } catch (error) {
             alert(error.message);
         } finally {
-            formData.isLoading = false;
+            isLoading.value = false;
         }
     }
 

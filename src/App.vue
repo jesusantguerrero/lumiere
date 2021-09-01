@@ -6,10 +6,13 @@
 import { nextTick, watch } from "vue";
 import { useRouter } from "vue-router";
 import config from "./config";
-import { firebaseState } from "./utils/useFirebase";
+import { useFirebase } from "./utils/useFirebase";
+import { AuthState, useAuth } from "./utils/useAuth";
+
+useAuth(useFirebase());
 
 const { push } = useRouter();
-watch(() => firebaseState.user, (user) => {
+watch(() => AuthState.user, (user) => {
   nextTick(() => {
     push({ name: user ? config.home : 'landing' });
   })

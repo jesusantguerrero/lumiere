@@ -3,7 +3,7 @@ import Login from "./pages/Auth/Login.vue";
 import Dashboard from "./pages/Dashboard.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import config from "./config";
-import { isAuthenticated } from "./utils/useFirebase";
+import { useAuth } from "./utils/useAuth";
 
 export const routes = [
   {
@@ -47,7 +47,7 @@ const myRouter = createRouter({
   history: createWebHistory(),
   routes,
 });
-
+const { isAuthenticated } = useAuth();
 myRouter.beforeEach(async (to, _from, next) => {
   const user = await isAuthenticated();
   if (to.meta.requiresAuth !== false && !user) {
