@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="flex justify-between px-10 py-3 border-b shadow-md">
-      <div class="flex items-center">
+      <router-link to="/dashboard" class="flex items-center">
         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fill-rule="evenodd">
             <path
@@ -19,8 +19,9 @@
           </g>
         </svg>
         <h1 class="text-xl font-bold">{{ title }}</h1>
-      </div>
-      <div>
+      </router-link>
+      <div class="flex">
+        <AppNotification :notifications="unReadNotifications" />
         <AtButton type="primary" @click="$emit('logout')" v-if="user">
           Logout
         </AtButton>
@@ -30,7 +31,9 @@
 </template>
 
 <script setup>
+import { computed, inject } from "@vue/runtime-core";
 import { AtButton } from "atmosphere-ui";
+import AppNotification from "./AppNotification.vue";
 
 defineProps({
     title: {
@@ -39,6 +42,12 @@ defineProps({
     user: {
       type: Object,
     },
-  });
+});
+
 defineEmits(['login', 'logout', 'createAccount']);
+
+const notifications = inject('notifications', []);
+const unReadNotifications = computed(() => {
+  return notifications.value && notifications.value.filter((notification) => !notification.read_at)
+})
 </script>

@@ -1,6 +1,7 @@
 import Landing from "./pages/Landing/index.vue";
 import Login from "./pages/Auth/Login.vue";
 import Dashboard from "./pages/Dashboard.vue";
+import Notifications from "./pages/Notifications.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import config from "./config";
 import { useAuth } from "./utils/lumiere-utils";
@@ -41,6 +42,11 @@ export const routes = [
     name: "dashboard",
     component: Dashboard,
   },
+  {
+    path: "/notifications",
+    name: "notifications",
+    component: Notifications,
+  },
 ];
 
 const myRouter = createRouter({
@@ -50,6 +56,7 @@ const myRouter = createRouter({
 const { isAuthenticated } = useAuth();
 myRouter.beforeEach(async (to, _from, next) => {
   const user = await isAuthenticated();
+  debugger
   if (to.meta.requiresAuth !== false && !user) {
     next({ name: "login" });
   } else if (to.meta.requiresAuth == false && user && config.loginRoutes.includes(to.name)) {
