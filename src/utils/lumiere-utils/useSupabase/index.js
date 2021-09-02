@@ -34,22 +34,38 @@ export function useSupabase(AuthState, config) {
     return data;
   };
 
-  const getProfile = async () => {
-    const { data, error, status } = await supabase
-      .from("profiles")
-      .select(`username, website, avatar_url`)
-      .eq("id", supabaseState.user.id)
-      .single();
-
-    if (error && status !== 406) throw error;
-    if (data) {
-      return data;
-    }
-  };
-
   const isAuthenticated = () => {
     return supabaseState.user.id ? true : false;
   };
+
+
+  // Profile Management
+  const getProfile = () => {}
+
+
+  // Notifications
+  const update = async (notificationId, notification) => {
+      const { data, error } = await supabase.from('notifications').update(notification, { returning: 'minimal' }).eq('id', notificationId);
+      if (error) throw error;
+      return data;
+  }
+
+  const getNotifications = async (limit = 100) => {
+    const {data, error} = await supabase.from('notifications').select('*').eq('user_uid', AuthState.user.id).limit(limit);
+    if (error) throw error;
+    return data;
+  }
+
+  const getServerTime = () => {
+    return new Date();
+  }
+
+  const Notifications = {
+    getAll: getNotifications,
+    update: update,
+    getServerTime,
+  }
+
 
   return {
     supabase,
@@ -60,5 +76,11 @@ export function useSupabase(AuthState, config) {
     isAuthenticated,
     onAuthStateChanged: (callback) => supabase.auth.onAuthStateChange(callback),
     getUser: () => supabase.auth.user(),
+
+    // notifications
+    Notifications,
+
+    // utils
+    getServerTime
   };
 }

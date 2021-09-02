@@ -1,21 +1,26 @@
 <template>
-  <router-view />
+  <lumiere-provider :provider="provider">
+    <router-view />
+  </lumiere-provider>
 </template>
 
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { avoidLoginRoutes } from  './router';
-import { useFirebase, AuthState, useAuth } from "./utils/lumiere-utils";
+import { useSupabase, AuthState, useAuth } from "./utils/lumiere-utils";
 import config from "./config";
 import { nextTick, watch } from "@vue/runtime-core";
+import LumiereProvider from "./components/core/LumiereProvider.vue";
 
-const { initAuth } = useAuth(useFirebase(AuthState, config));
+const provider = useSupabase(AuthState, config)
+
+const { initAuth } = useAuth(provider);
 initAuth(avoidLoginRoutes.bind(null, useRoute()));
 
 const { push } = useRouter();
 watch(() => AuthState.user, (user) => {
   nextTick(() => {
-    push({ name: user ? config.home : 'landing' });
+    avoidLoginRoutes(useRoute(), user)
   })
 }, { deep: true });
 </script>
