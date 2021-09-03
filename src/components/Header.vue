@@ -22,9 +22,7 @@
       </router-link>
       <div class="flex">
         <AppNotification :notifications="unReadNotifications" />
-        <AtButton type="primary" @click="$emit('logout')" v-if="user">
-          Logout
-        </AtButton>
+        <AppUserButton :notifications="unReadNotifications" @logout="$emit('logout')" />
       </div>
     </div>
   </header>
@@ -34,6 +32,7 @@
 import { computed, inject } from "@vue/runtime-core";
 import { AtButton } from "atmosphere-ui";
 import AppNotification from "./AppNotification.vue";
+import AppUserButton from "./AppUserButton.vue";
 
 defineProps({
     title: {
