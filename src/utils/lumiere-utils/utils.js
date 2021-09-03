@@ -7,6 +7,7 @@ export const defaultUserButtonOptions = {
             ["Billing", '/settings/billing'],
             '',
             ['API Tokens', '/settings/tokens'],
+            ['About', '/about'],
             '',
             ['Logout', {
               emit: 'logout'

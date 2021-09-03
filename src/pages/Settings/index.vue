@@ -1,101 +1,248 @@
 <template>
-<Default>
+  <Default>
     <main class="flex">
-        <div class="w-2/12">
-            <ul class="w-32">
-                <li v-for="(section, sectionName) in sections" :key="sectionName" class="px-5 py-1 cursor-pointer hover:bg-gray-100" @click="setSelectedSection(section)">
-                    {{ section.label }}
-                </li>
-            </ul>
+      <div class="w-2/12">
+        <ul class="w-32">
+          <li
+            v-for="(section, sectionName) in sections"
+            :key="sectionName"
+            class="px-5 py-1 cursor-pointer hover:bg-gray-100"
+            :class="{'bg-gray-50': sectionName == selectedSection, 'mt-5': section.divider}"
+            @click="setSelectedSection(sectionName)"
+          >
+            {{ section.label }}
+          </li>
+        </ul>
+      </div>
+      <div class="w-full">
+        <div class="pb-5 border-b">
+          <h1 class="text-xl font-bold">{{ sectionData.label }}</h1>
+          <h2 class="text-sm font-bold text-gray-500">
+            {{ sectionData.subtitle }}
+          </h2>
         </div>
-        <div class="w-full">
-            <div class="pb-5 border-b">
-                <h1 class="text-xl font-bold"> {{ selectedSection.label }}</h1>
-                <h2 class="text-sm font-bold text-gray-500"> {{ selectedSection.subtitle }}</h2>
-            </div>
-            <component :is="selectedSection.component"  v-bind="selectedSection.data" v-if="selectedSection.component" />
+        <div class="mt-4">
+          <component
+            class="mt-4"
+            :is="sectionData.component"
+            v-bind="sectionData.data"
+            v-if="sectionData.component"
+          />
         </div>
+      </div>
     </main>
-</Default>
+  </Default>
 </template>
 
 <script setup>
-import { ref } from "@vue/reactivity";
+import { computed, ref } from "@vue/reactivity";
 import Default from "../../layouts/default.vue";
+import BillingSection from "./BillingSection.vue";
+import PlansSection from "./PlansSection.vue";
 import SettingsOverview from "./SettingsOverview.vue";
+import TeamAccount from "./TeamAccount.vue";
+import UserAccount from "./UserAccount.vue";
 
-const sections = {
-    overview: {
-        label: "Overview",
-        subtitle: "Manage your workspace settings",
-        data: {
-            features: [{
-            icon: '',
-            title: '',
-            subtitle: '',
-            link: '',
-            actions: [
-                {
-                    label: 'migrate issues',
-                    link: '/migrate-issues'
-                },
-                {
-                    label: 'Learn more',
-                    link: '/learn more'
-                }
-            ],
-            }],
-            integrations: [
-                {
-                    name: 'github'
-                }
-            ],
-            docs: [
-                {
-                    label: 'Onboarding videos',
-                    substitle: 'Get started quickly'
-                },
-                {
-                    label: 'Onboarding videos',
-                    substitle: 'Get started quickly'
-                },
-                {
-                    label: 'Onboarding videos',
-                    substitle: 'Get started quickly'
-                }
-            ] 
+const sections = computed(() => ({
+  overview: {
+    label: "Overview",
+    subtitle: "Manage your workspace settings",
+    data: {
+      features: [
+        {
+          icon: "",
+          title: "Issue Migration Assistant",
+          description: "lorem ipsum dolor",
+          actions: [
+            {
+              label: "migrate issues",
+              link: "/migrate-issues",
+            },
+            {
+              label: "Learn more",
+              link: "/learn more",
+              type: "secondary",
+            },
+          ],
         },
-        component: SettingsOverview
-    }, 
-    general: {
-        label: 'General',
-        subtitle: 'Manage your workspace settings'
+        {
+          icon: "",
+          title: "Issue Migration Assistant",
+          description: "lorem ipsum dolor",
+          actions: [
+            {
+              label: "migrate issues",
+              link: "/migrate-issues",
+            },
+            {
+              label: "Learn more",
+              link: "/learn more",
+              type: "secondary",
+            },
+          ],
+        },
+        {
+          icon: "",
+          title: "Issue Migration Assistant",
+          description: "lorem ipsum dolor",
+          actions: [
+            {
+              label: "migrate issues",
+              link: "/migrate-issues",
+            },
+            {
+              label: "Learn more",
+              link: "/learn more",
+              type: "secondary",
+            },
+          ],
+        },
+        {
+          icon: "",
+          title: "Issue Migration Assistant",
+          description: "lorem ipsum dolor",
+          actions: [
+            {
+              label: "migrate issues",
+              link: "/migrate-issues",
+            },
+            {
+              label: "Learn more",
+              link: "/learn more",
+              type: "secondary",
+            },
+          ],
+        },
+        {
+          icon: "",
+          title: "Issue Migration Assistant",
+          description: "lorem ipsum dolor",
+          actions: [
+            {
+              label: "migrate issues",
+              link: "/migrate-issues",
+            },
+            {
+              label: "Learn more",
+              link: "/learn more",
+              type: "secondary",
+            },
+          ],
+        },
+        {
+          icon: "",
+          title: "Issue Migration Assistant",
+          description: "lorem ipsum dolor",
+          actions: [
+            {
+              label: "migrate issues",
+              link: "/migrate-issues",
+            },
+            {
+              label: "Learn more",
+              link: "/learn more",
+              type: "secondary",
+            },
+          ],
+        },
+      ],
+      integrations: [
+        {
+          name: "github",
+        },
+      ],
+      docs: [
+        {
+          label: "Onboarding videos",
+          substitle: "Get started quickly",
+        },
+        {
+          label: "Onboarding videos",
+          substitle: "Get started quickly",
+        },
+        {
+          label: "Onboarding videos",
+          substitle: "Get started quickly",
+        },
+      ],
     },
-    roadmap: {
-        label: 'Roadmap',
-        subtitle: 'Manage your workspace settings'
+    component: SettingsOverview,
+  },
+  general: {
+    label: "General",
+    subtitle: "Manage your workspace settings",
+    component: TeamAccount
+  },
+   members: {
+    label: "Members",
+    subtitle: "Manage your workspace settings",
+  },
+  plans: {
+    label: "Plans",
+    subtitle: "Manage your workspace settings",
+    data: {
+        plans: [{
+            name: 'Free',
+            currency: 'USD',
+            amount: 0,
+            yearly: 0,
+            isCurrent: true,
+            subscribeLabel: 'Current plan',
+            description: 'Perfect for starters',
+            features: [
+                'one',
+                'two',
+                'three'
+            ]
+        }, {
+            name: 'Pro',
+            amount: 10,
+            currency: 'USD',
+            yearly: 8,
+            description: 'Expand your horizons'
+        }, {
+            name: 'Plus',
+            currency: 'USD',
+            amount: 15,
+            yearly: 12,
+            description: 'Enjoy the full potential'
+        }]
     },
-    members: {
-        label: 'Members',
-        subtitle: 'Manage your workspace settings'
-    },
-    plans: {
-        label: 'Plans',
-        subtitle: 'Manage your workspace settings'
-    },
-    billing: {
-        label: 'Billing',
-        subtitle: 'Manage your workspace settings' 
-    },
-    integrations: {
-        label: 'Integrations',
-        subtitle: 'Manage your workspace settings' 
-    }
-}
+    component: PlansSection
+  },
+  billing: {
+    label: "Billing",
+    subtitle: "Manage your workspace settings",
+    component: BillingSection
+  },
+  integrations: {
+    label: "Integrations",
+    subtitle: "Manage your workspace settings",
+  },
+  profile: {
+    divider: true,
+    label: "Profile",
+    subtitle: "Manage your profile",
+    component: UserAccount
+  },
+  notifications: {
+    label: "Notifications",
+    subtitle: "Select where and when you'll be notified",
+    component: UserAccount
+  },
+  api: {
+    label: "API",
+    subtitle: "Select where and when you'll be notified",
+    component: UserAccount
+  },
+}));
 
-const selectedSection = ref(Object.values(sections)[0]);
+const selectedSection = ref(Object.keys(sections.value)[0]);
 
+const sectionData = computed(() => {
+    return sections.value[selectedSection.value];
+})
 const setSelectedSection = (section) => {
-    selectedSection.value = section;
-}
+  selectedSection.value = section;
+};
 </script>
