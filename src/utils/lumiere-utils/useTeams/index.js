@@ -1,7 +1,7 @@
 import { reactive } from "vue";
 
 // firebase state
-export const AuthState = reactive({
+export const TeamState = reactive({
     user: null,
     uid: null,
     settings: {},

@@ -39,5 +39,4 @@ watchEffect(async () => {
 
 provide('notifications', notifications);
 provide('updateNotification', updateNotification);
-console.log(props.provider)
 </script>

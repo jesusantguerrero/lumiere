@@ -25,7 +25,7 @@
     "@types/jest": "^26.0.24",
     "@vitejs/plugin-vue": "^1.6.0",
     "@vue/compiler-sfc": "^3.0.5",
-    "atmosphere-ui": "^0.2.8",
+    "atmosphere-ui": "^0.3.0",
     "autoprefixer": "^10.3.3",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",

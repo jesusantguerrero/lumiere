@@ -36,12 +36,19 @@
 
 <script setup>
 import { computed, ref } from "@vue/reactivity";
+import treasurer from "../../config/treasurer";
 import Default from "../../layouts/default.vue";
 import BillingSection from "./BillingSection.vue";
 import PlansSection from "./PlansSection.vue";
 import SettingsOverview from "./SettingsOverview.vue";
 import TeamAccount from "./TeamAccount.vue";
 import UserAccount from "./UserAccount.vue";
+
+const plans = Object.entries(treasurer.plans).map(([name, props]) => ({
+  name,
+  ...props,
+  currency: "USD"
+}));
 
 const sections = computed(() => ({
   overview: {
@@ -181,32 +188,7 @@ const sections = computed(() => ({
     label: "Plans",
     subtitle: "Manage your workspace settings",
     data: {
-        plans: [{
-            name: 'Free',
-            currency: 'USD',
-            amount: 0,
-            yearly: 0,
-            isCurrent: true,
-            subscribeLabel: 'Current plan',
-            description: 'Perfect for starters',
-            features: [
-                'one',
-                'two',
-                'three'
-            ]
-        }, {
-            name: 'Pro',
-            amount: 10,
-            currency: 'USD',
-            yearly: 8,
-            description: 'Expand your horizons'
-        }, {
-            name: 'Plus',
-            currency: 'USD',
-            amount: 15,
-            yearly: 12,
-            description: 'Enjoy the full potential'
-        }]
+        plans,
     },
     component: PlansSection
   },

@@ -2,7 +2,7 @@
   <at-dropdown placement="bottom-end" :width="300" trigger="click">
     <template #trigger>
       <div
-        class="relative flex p-2 mx-2 text-sm font-bold text-gray-400 rounded-md cursor-pointer select-none lg:text-lg dark:hover:bg-gray-600 dark:hover:text-white"
+        class="relative flex p-2 text-sm font-bold text-gray-400 rounded-full cursor-pointer select-none hover:bg-gray-100 lg:text-lg dark:hover:bg-gray-600 dark:hover:text-white"
       > 
         <div class="w-6 h-6 bg-red-200 rounded-full cursor-pointer">
         </div>
@@ -26,12 +26,11 @@
                 {{ section[0] }}
               </router-link>
 
-              <button v-else-if="isSectionAction(section)" @click="$emit(section[1])" class="block w-full px-3 py-2 text-left hover:bg-gray-100">
+              <button v-else-if="isSectionAction(section)" @click="$emit(section[1].emit)" class="block w-full px-3 py-2 text-left hover:bg-gray-100">
                 {{ section[0] }}
               </button>
 
               <div v-else class="w-full h-0 border "></div>
-            
           </template>
         </div>
       </div>
