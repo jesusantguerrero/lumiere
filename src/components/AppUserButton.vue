@@ -40,7 +40,7 @@
 
 <script setup>
 import { AtDropdown } from "atmosphere-ui";
-import { defaultUserButtonOptions } from '../utils/lumiere-utils/utils';
+import { defaultUserButtonOptions } from 'lumiere-utils';
 
 const props = defineProps({
       options: {

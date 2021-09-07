@@ -25,7 +25,7 @@ export default {
         },
         plus: {
             description: 'Enjoy the full potential',
-            id: config.,
+            id: 'P-8T562619CX248525SMAFOZUY',
             amount: 15,
             yearly: 12,
             features: [
