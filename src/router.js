@@ -1,10 +1,11 @@
 import Landing from "./pages/Landing/index.vue";
 import Login from "./pages/Auth/Login.vue";
 import Dashboard from "./pages/Dashboard.vue";
+import Settings from "./pages/Settings/index.vue";
 import Notifications from "./pages/Notifications.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import config from "./config";
-import { useAuth } from "./utils/lumiere-utils";
+import { useAuth } from "lumiere-utils";
 
 export const routes = [
   {
@@ -47,6 +48,21 @@ export const routes = [
     name: "notifications",
     component: Notifications,
   },
+  {
+    path: "/settings",
+    name: "settings",
+    component: Settings,
+  },
+  {
+    path: "/settings/:section",
+    name: "settings-section",
+    component: Settings,
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: Settings,
+  },
 ];
 
 const myRouter = createRouter({
@@ -56,7 +72,6 @@ const myRouter = createRouter({
 const { isAuthenticated } = useAuth();
 myRouter.beforeEach(async (to, _from, next) => {
   const user = await isAuthenticated();
-  debugger
   if (to.meta.requiresAuth !== false && !user) {
     next({ name: "login" });
   } else if (to.meta.requiresAuth == false && user && config.loginRoutes.includes(to.name)) {

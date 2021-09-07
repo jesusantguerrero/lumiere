@@ -21,10 +21,9 @@
         <h1 class="text-xl font-bold">{{ title }}</h1>
       </router-link>
       <div class="flex">
+        <AtFeedbackButton @submit="onFeedback" />
         <AppNotification :notifications="unReadNotifications" />
-        <AtButton type="primary" @click="$emit('logout')" v-if="user">
-          Logout
-        </AtButton>
+        <AppUserButton :notifications="unReadNotifications" @logout="$emit('logout')" />
       </div>
     </div>
   </header>
@@ -32,8 +31,10 @@
 
 <script setup>
 import { computed, inject } from "@vue/runtime-core";
-import { AtButton } from "atmosphere-ui";
 import AppNotification from "./AppNotification.vue";
+import AppUserButton from "./AppUserButton.vue";
+import { AtFeedbackButton } from "atmosphere-ui";
+import { useLumiere } from "lumiere-utils";
 
 defineProps({
     title: {
@@ -46,8 +47,14 @@ defineProps({
 
 defineEmits(['login', 'logout', 'createAccount']);
 
-const notifications = inject('notifications', []);
+const { notifications, FeedbackProvider } = useLumiere();
+
 const unReadNotifications = computed(() => {
   return notifications.value && notifications.value.filter((notification) => !notification.read_at)
 })
+
+
+const onFeedback = (feedback) => {
+  FeedbackProvider.add(feedback)
+}
 </script>

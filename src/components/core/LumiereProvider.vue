@@ -6,7 +6,7 @@
 
 <script setup>
 import { provide, ref, watchEffect } from "vue";
-import { AuthState } from "../../utils/lumiere-utils";
+import { AuthState } from "lumiere-utils";
 
 const props = defineProps({
     provider: {
@@ -39,5 +39,4 @@ watchEffect(async () => {
 
 provide('notifications', notifications);
 provide('updateNotification', updateNotification);
-console.log(props.provider)
 </script>
