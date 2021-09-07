@@ -14,7 +14,7 @@
           </li>
         </ul>
       </div>
-      <div class="w-full">
+      <div class="w-full" v-if="sectionData">
         <div class="pb-5 border-b">
           <h1 class="text-xl font-bold">{{ sectionData.label }}</h1>
           <h2 class="text-sm font-bold text-gray-500">
@@ -35,7 +35,8 @@
 </template>
 
 <script setup>
-import { computed, ref } from "@vue/reactivity";
+import { computed, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import treasurer from "../../config/treasurer";
 import Default from "../../layouts/default.vue";
 import BillingSection from "./BillingSection.vue";
@@ -180,7 +181,7 @@ const sections = computed(() => ({
     subtitle: "Manage your workspace settings",
     component: TeamAccount
   },
-   members: {
+  members: {
     label: "Members",
     subtitle: "Manage your workspace settings",
   },
@@ -219,12 +220,27 @@ const sections = computed(() => ({
   },
 }));
 
-const selectedSection = ref(Object.keys(sections.value)[0]);
+const route = useRoute()
+
+const getDefaultSection = () => {
+  return Object.keys(sections.value)[0]
+}
+
+const selectedSection = ref(null);
 
 const sectionData = computed(() => {
     return sections.value[selectedSection.value];
-})
+});
+
 const setSelectedSection = (section) => {
-  selectedSection.value = section;
+  const hasSection = Object.keys(sections.value).includes(section)
+
+  selectedSection.value = hasSection && section ? section : getDefaultSection();
 };
+
+
+watch(() => route.fullPath , ()=> {
+    setSelectedSection(route.params.section);
+}, { immediate: true})
+
 </script>

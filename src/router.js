@@ -53,6 +53,16 @@ export const routes = [
     name: "settings",
     component: Settings,
   },
+  {
+    path: "/settings/:section",
+    name: "settings-section",
+    component: Settings,
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: Settings,
+  },
 ];
 
 const myRouter = createRouter({

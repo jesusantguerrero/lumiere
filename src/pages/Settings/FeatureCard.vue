@@ -29,7 +29,10 @@ defineProps({
         type: String
     },
     actions: {
-        type: String
+        type: Array,
+        default() {
+            return [];
+        }
     }
 })
 
