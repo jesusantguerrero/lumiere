@@ -27,7 +27,7 @@
 import { reactive, ref } from "@vue/reactivity";
 import Avatar from "../../components/Avatar.vue";
 import { AtField, AtInput, AtButton } from "atmosphere-ui";
-import { AuthState } from "lumiere-utils";
+import { AuthState } from "lumiere-utils/useAuth";
 
 const formData = reactive({
     username: "",

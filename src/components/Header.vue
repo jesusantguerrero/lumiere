@@ -34,7 +34,7 @@ import { computed, inject } from "@vue/runtime-core";
 import AppNotification from "./AppNotification.vue";
 import AppUserButton from "./AppUserButton.vue";
 import { AtFeedbackButton } from "atmosphere-ui";
-import { useLumiere } from "lumiere-utils";
+import { useLumiere } from "lumiere-utils/useLumiere";
 
 defineProps({
     title: {

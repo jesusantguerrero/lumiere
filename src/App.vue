@@ -7,7 +7,8 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { avoidLoginRoutes } from  './router';
-import { useSupabase, AuthState, useAuth } from "lumiere-utils";
+import { useSupabase } from "lumiere-utils/useSupabase"
+import { AuthState, useAuth } from "lumiere-utils/useAuth";
 import config from "./config";
 import { nextTick, watch } from "@vue/runtime-core";
 import LumiereProvider from "./components/core/LumiereProvider.vue";

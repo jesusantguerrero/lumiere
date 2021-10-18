@@ -5,7 +5,7 @@ import Settings from "./pages/Settings/index.vue";
 import Notifications from "./pages/Notifications.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import config from "./config";
-import { useAuth } from "lumiere-utils";
+import { useAuth } from "lumiere-utils/useAuth";
 
 export const routes = [
   {
