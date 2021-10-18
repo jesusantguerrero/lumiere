@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-    import { AuthState, useAuth } from 'lumiere-utils';
+    import { AuthState, useAuth } from 'lumiere-utils/useAuth';
     import Header from '../components/Header.vue';
     import { useRouter } from 'vue-router';
 

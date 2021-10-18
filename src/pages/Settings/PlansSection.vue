@@ -21,7 +21,7 @@
 import { reactive } from "@vue/reactivity";
 import { nextTick, onMounted } from "@vue/runtime-core";
 import { AtPlanCardFlat, AtFieldCheck } from "atmosphere-ui";
-import { useLumiere } from "lumiere-utils";
+import { useLumiere } from "lumiere-utils/useLumiere";
 
 const { subscriptionProvider } = useLumiere()
 defineProps({
