@@ -19,9 +19,12 @@ const { initAuth } = useAuth(provider);
 initAuth(avoidLoginRoutes.bind(null, useRoute()));
 
 const { push } = useRouter();
-watch(() => AuthState.user, (user) => {
+watch(() => AuthState.user, (user, oldUser) => {
   nextTick(() => {
-    avoidLoginRoutes(useRoute(), user)
+    if (oldUser) {
+      const route = useRoute();
+      avoidLoginRoutes(route, user)
+    }
   })
 }, { deep: true });
 </script>
