@@ -1,21 +1,20 @@
 <template>
-    <Header title="Lumiere"  :user="AuthState.user" @logout="signOut" />
+    <Header title="Lumiere"  :user="user" @logout="signOut" />
     <main class="px-10 mt-10">
         <slot />
     </main>
 </template>
 
 <script setup>
-    import { AuthState, useAuth } from 'lumiere-utils/useAuth';
+    import { useAuthState } from 'lumiere-utils/useAuth';
     import Header from '../components/Header.vue';
     import { useRouter } from 'vue-router';
 
     const { push } = useRouter();
-    const { logout } = useAuth();
     const goToHome = () => {
         push({ name: 'landing' })
     };
-    
+    const { provider: { logout }, user } = useAuthState()
     const signOut = () => {
         logout(goToHome);
     }
