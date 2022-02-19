@@ -7,6 +7,7 @@
         :links="state.links"
         link-class="text-white hover:text-amber-500"
         :actions="state.actions"
+        @action="login"
       />
     </div>
     <div class="py-20 mb-10 text-center bg-orange-500 text-gray-50">
@@ -44,6 +45,9 @@
 
 <script setup>
 import { AtSiteHeader, AtPreFooter, AtSiteFooter, AtButton } from "atmosphere-ui";
+import { useAuth } from 'lumiere-utils/useAuth';
+
+const { login, register } = useAuth();
 
 const state = {
   title: "Lumiere",
@@ -101,8 +105,9 @@ const state = {
   },
   actions: [
     {
-      name: "Login",
-      url: "/login",
+      name: "Connect",
+      emit: true,
+      // url: "/login",
       class: 'bg-white text-amber-500 hover:bg-gray-100 transition'
     },
     {

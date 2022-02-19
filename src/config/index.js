@@ -10,4 +10,6 @@ export default {
     MEASUREMENT_ID: import.meta.env.VITE_MEASUREMENT_ID,
     supabaseURL: import.meta.env.VITE_SUPABASE_URL,
     supabaseAnonKey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+    MORALIS_SERVER_URL: import.meta.env.VITE_MORALIS_SERVER_URL,
+    MORALIS_API_KEY: import.meta.env.VITE_MORALIS_API_KEY,
 }
