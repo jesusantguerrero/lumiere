@@ -19,11 +19,11 @@
 <script setup>
     import { nextTick, ref } from 'vue';
     import { AtAuthBox, AtAuthForm } from 'atmosphere-ui';
-    import { useAuth } from 'lumiere-utils/useAuth';
+    import { useAuthState } from 'lumiere-utils/useAuth';
     import { useRouter } from 'vue-router';
     import config from '../../config';
 
-    const { login, register } = useAuth();
+    const { provider: { login, register } } = useAuthState()
     
     const props = defineProps({
         mode: {

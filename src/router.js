@@ -69,26 +69,17 @@ const myRouter = createRouter({
   history: createWebHistory(),
   routes,
 });
+
 const { isAuthenticated } = useAuth();
 myRouter.beforeEach(async (to, _from, next) => {
   const user = await isAuthenticated();
   if (to.meta.requiresAuth !== false && !user) {
-    next({ name: "login" });
+    next({ name: config.loginRoutes[0] });
   } else if (to.meta.requiresAuth == false && user && config.loginRoutes.includes(to.name)) {
     next({ name: config.home });
   } else {
     next();
   }
 });
-
-export const avoidLoginRoutes = (route, isAuthenticated) => {
-  const routeConfig = routes.find((r) => r.path === route.path);
-  if (isAuthenticated && route.matched.some(record => config.loginRoutes.includes(record.path))) {
-    myRouter.push({ name: "dashboard" });
-  } else if (!isAuthenticated && (!routeConfig || routeConfig.meta.requiresAuth !== false)) {
-    myRouter.push({ name: "login" });
-  }
-  return
-}
 
 export default myRouter;

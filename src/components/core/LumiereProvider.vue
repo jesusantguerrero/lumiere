@@ -19,7 +19,9 @@ const notifications = ref([])
 const { Notifications } = props.provider
 
 const fetchNotifications = async () => {
-    notifications.value = await Notifications.getAll();
+    if (Notifications.getAll) {
+        notifications.value = await Notifications.getAll();
+    }
 }
 
 const updateNotification = (notificationId, notification) => {
@@ -32,7 +34,7 @@ const updateNotification = (notificationId, notification) => {
 }
 
 watchEffect(async () => {
-    if (Notifications && AuthState.user.id) {
+    if (Notifications && AuthState.user && AuthState.user.id) {
         fetchNotifications();
     }
 })

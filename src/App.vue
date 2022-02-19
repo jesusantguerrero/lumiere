@@ -1,32 +1,13 @@
 <template>
-  <lumiere-provider :provider="provider">
+  <lumiere-provider :provider="useSupabase" :config="config">
     <router-view />
   </lumiere-provider>
 </template>
 
 <script setup>
-import { useRoute, useRouter } from "vue-router";
-import { avoidLoginRoutes } from  './router';
-import { useSupabase } from "lumiere-utils/useSupabase"
-import { AuthState, useAuth } from "lumiere-utils/useAuth";
-import config from "./config";
-import { nextTick, watch } from "@vue/runtime-core";
-import LumiereProvider from "./components/core/LumiereProvider.vue";
-
-const provider = useSupabase(AuthState, config)
-
-const { initAuth } = useAuth(provider);
-initAuth(avoidLoginRoutes.bind(null, useRoute()));
-
-const { push } = useRouter();
-watch(() => AuthState.user, (user, oldUser) => {
-  nextTick(() => {
-    if (oldUser) {
-      const route = useRoute();
-      avoidLoginRoutes(route, user)
-    }
-  })
-}, { deep: true });
+  import config from "./config";
+  import { LumiereProvider } from 'lumiere-utils'
+  import { useSupabase } from 'lumiere-utils/useSupabase'
 </script>
 
 <style>
