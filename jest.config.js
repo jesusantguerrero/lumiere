@@ -11,6 +11,6 @@ module.exports = {
   transformIgnorePatterns: ['/node-modules/'],
   transform: {
     '^.+\\.js$': 'babel-jest',
-    '^.+\\.vue$': 'vue-jest'
+    '^.+\\.vue$': '@vue/vue3-jest'
   }
 }

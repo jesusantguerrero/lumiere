@@ -30,11 +30,11 @@
 </template>
 
 <script setup>
-import { computed, inject } from "@vue/runtime-core";
+import { computed } from "@vue/runtime-core";
+import { useLumiere } from "lumiere-utils/src/useLumiere";
 import AppNotification from "./AppNotification.vue";
 import AppUserButton from "./AppUserButton.vue";
 import { AtFeedbackButton } from "atmosphere-ui";
-import { useLumiere } from "lumiere-utils/useLumiere";
 
 defineProps({
     title: {
@@ -52,7 +52,6 @@ const { notifications, FeedbackProvider } = useLumiere();
 const unReadNotifications = computed(() => {
   return notifications.value && notifications.value.filter((notification) => !notification.read_at)
 })
-
 
 const onFeedback = (feedback) => {
   FeedbackProvider.add(feedback)
