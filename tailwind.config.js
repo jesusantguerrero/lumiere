@@ -1,14 +1,11 @@
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-  jit: true,
-  purge: [
+  content: [
     './index.html', 
     './src/**/*.{vue,js,ts,jsx,tsx}',
     "./node_modules/atmosphere-ui/**/*.vue"
   ],
-
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
@@ -29,7 +26,7 @@ module.exports = {
           '900': '#002951'
         },
         amber: colors.amber,
-        'warm-gray': colors.warmGray,
+        'warm-gray': colors.stone,
         orange: colors.orange,
       }
     },

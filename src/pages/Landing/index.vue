@@ -1,6 +1,6 @@
 <template>
   <main class="w-full">
-    <div class="w-full bg-warm-gray-800">
+    <div class="w-full bg-stone-800">
       <AtSiteHeader
         title="Lumiere"
         brand-class="font-brand"
@@ -20,7 +20,7 @@
 
         <div class="mt-5 space-x-3">
           <AtButton class="bg-white text-amber-500">Learn more</AtButton>
-          <AtButton class="font-bold bg-warm-gray-700 text-amber-500"
+          <AtButton class="font-bold bg-stone-700 text-amber-500"
             >See github</AtButton
           >
         </div>
@@ -39,8 +39,8 @@
         </div>
       </div>
     </div>
-    <div class="relative text-gray-100 bg-warm-gray-800">
-      <AtPreFooter :sections="state.sections" class="bg-warm-gray-800" />
+    <div class="relative text-gray-100 bg-stone-800">
+      <AtPreFooter :sections="state.sections" class="bg-stone-800" />
       <AtSiteFooter
         title="Lumiere"
         year="2021"
