@@ -25,7 +25,7 @@ Roadmap
 | ------------------------------------------------------| ------- |
 | [Supabase account](https://supabase.com/)* or         |         |
 | [Firebase account](https://firebase.google.com/)*     |         |
-| npm (comes with Node) or yarn (used)                  | `~ ^12.20.0`|
+| node                                                  | `~ ^14.17.0`|
 | npm (comes with Node) or yarn (used)                  | `~ ^6.14.8`  |
 
 * Either firebase or supabase not both
