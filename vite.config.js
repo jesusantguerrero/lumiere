@@ -13,5 +13,8 @@ export default defineConfig({
   optimizeDeps: {
     include: ["@supabase/supabase-js"],
     exclude: ['lumiere-utils']
+  },
+  test: {
+    environment: "happy-dom"
   }
 })

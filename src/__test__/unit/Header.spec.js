@@ -1,12 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/vue'
-import Header from '../../components/Header.vue'
+import { describe, it } from 'vitest'
+import Avatar from '../../components/Avatar.vue'
 
-test('emits logout on click', async () => {
-  render(Header, {
-      props: {
-          user: {},
-      }
+describe("Avatar", () => {
+  it('Renders avatar', async () => {
+    render(Avatar)
   })
-  const button = screen.getByText('Logout')
-  await fireEvent.click(button);
 })
