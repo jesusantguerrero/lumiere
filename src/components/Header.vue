@@ -23,18 +23,22 @@
       <div class="flex">
         <AtFeedbackButton @submit="onFeedback" />
         <AppNotification :notifications="unReadNotifications" />
-        <AppUserButton :notifications="unReadNotifications" @logout="$emit('logout')" />
+        <AtUserButton 
+          :notifications="unReadNotifications"
+          :options="defaultUserButtonOptions" 
+          @logout="$emit('logout')" 
+        />
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
-import { computed } from "@vue/runtime-core";
+import { computed } from "vue";
 import { useLumiere } from "lumiere-utils/src/useLumiere";
+import { defaultUserButtonOptions } from 'lumiere-utils/src/utils';
 import AppNotification from "./AppNotification.vue";
-import AppUserButton from "./AppUserButton.vue";
-import { AtFeedbackButton } from "atmosphere-ui";
+import { AtFeedbackButton, AtUserButton } from "atmosphere-ui";
 
 defineProps({
     title: {
