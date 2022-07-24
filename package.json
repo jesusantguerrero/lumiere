@@ -11,31 +11,31 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@vueuse/core": "^8.4.2",
-    "vue": "^3.2.33"
+    "@vueuse/core": "^8.9.4",
+    "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@storybook/addon-actions": "^6.4.22",
-    "@storybook/addon-essentials": "^6.4.22",
-    "@storybook/addon-links": "^6.4.22",
-    "@storybook/vue3": "^6.4.22",
-    "@supabase/supabase-js": "^1.30.3",
-    "@testing-library/vue": "^6.4.2",
-    "@vitejs/plugin-vue": "^1.6.0",
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/vue3": "^6.5.9",
+    "@supabase/supabase-js": "^1.35.4",
+    "@testing-library/vue": "^6.6.1",
+    "@vitejs/plugin-vue": "^1.10.2",
     "atmosphere-ui": "^0.6.12",
-    "autoprefixer": "^10.3.3",
+    "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
-    "babel-loader": "^8.2.2",
-    "happy-dom": "^3.2.0",
-    "lumiere-utils": "^0.4.0",
-    "pinia": "^2.0.4",
-    "postcss": "^8.4.6",
-    "tailwindcss": "^3.0.23",
-    "vite": "^2.5.1",
-    "vitest": "^0.12.6",
+    "babel-loader": "^8.2.5",
+    "happy-dom": "^3.2.2",
+    "lumiere-utils": "^0.4.4",
+    "pinia": "^2.0.16",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.6",
+    "vite": "^2.9.14",
+    "vitest": "^0.12.10",
     "vue-loader": "^16.8.3",
-    "vue-router": "^4.0.11"
+    "vue-router": "^4.1.2"
   }
 }
