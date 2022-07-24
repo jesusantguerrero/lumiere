@@ -6,9 +6,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest",
-    "coverage": "vitest run --coverage",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@vueuse/core": "^8.9.4",
@@ -17,10 +15,6 @@
   "devDependencies": {
     "@babel/core": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
-    "@storybook/addon-actions": "^6.5.9",
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
-    "@storybook/vue3": "^6.5.9",
     "@supabase/supabase-js": "^1.35.4",
     "@testing-library/vue": "^6.6.1",
     "@vitejs/plugin-vue": "^1.10.2",
