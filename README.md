@@ -1,6 +1,6 @@
-# lumiere
+# Lumiere
 
-Project boilerplate for my firebase/vue projects
+Project boilerplate for my (firebase || supabase) + vue projects
 
 ### Tech Stack
 - Vue ^3

@@ -3,7 +3,7 @@
     <div class="w-full bg-stone-800">
       <AtSiteHeader
         title="Lumiere"
-        brand-class="font-brand"
+        brand-class="text-white font-brand"
         :links="state.links"
         link-class="text-white hover:text-amber-500"
         :actions="state.actions"
@@ -27,8 +27,8 @@
       </div>
     </div>
     <div class="py-20 mx-auto mt-10 text-center space-y-28 max-w-7xl">
-      <div class="flex w-full" v-for="featureRow in state.features">
-        <div class="w-4/12" v-for="feature in featureRow">
+      <div class="grid w-full grid-cols-3 gap-12">
+        <div class="w-full" v-for="feature in state.features" :key="feature.name">
           <h4 class="font-bold">{{ feature.emoji }} {{ feature.name }}</h4>
           <p class="mt-5 text-left">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat dolore soluta
@@ -137,8 +137,7 @@ const state = {
       name: "github",
     },
   ],
-  features: {
-    row1: [
+  features:[
       {
         emoji: "📦",
         name: "Firebase",
@@ -151,8 +150,6 @@ const state = {
         emoji: "📦",
         name: "Storybook",
       },
-    ],
-    row2: [
       {
         emoji: "📦",
         name: "Atmosphere UI",
@@ -165,8 +162,6 @@ const state = {
         emoji: "📦",
         name: "Vue Testing Library",
       },
-    ],
-    row3: [
       {
         emoji: "📦",
         name: "Full auth flow",
@@ -182,6 +177,5 @@ const state = {
         name: "Settings",
       },
     ],
-  },
 };
 </script>
