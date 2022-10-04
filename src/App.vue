@@ -1,5 +1,5 @@
 <template>
-  <lumiere-provider :provider="useSupabase" :config="config">
+  <lumiere-provider :provider="useFirebase" :config="config">
     <router-view />
   </lumiere-provider>
 </template>
@@ -7,7 +7,7 @@
 <script setup>
   import config from "./config";
   import { LumiereProvider } from 'lumiere-utils'
-  import { useSupabase } from 'lumiere-utils/useSupabase'
+  import { useFirebase } from 'lumiere-utils/useFirebase'
 </script>
 
 <style>

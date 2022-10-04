@@ -6,8 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': 'src',
-      '@lumiere': 'src/core'
+      '@': 'src'
     },
   },
   optimizeDeps: {
