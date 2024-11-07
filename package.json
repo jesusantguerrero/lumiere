@@ -24,7 +24,7 @@
     "axios": "^0.27.2",
     "babel-loader": "^8.2.5",
     "firebase": "^9.10.0",
-    "happy-dom": "^6.0.4",
+    "happy-dom": "^15.10.2",
     "lumiere-utils": "^0.4.4",
     "pinia": "^2.0.22",
     "postcss": "^8.4.17",
